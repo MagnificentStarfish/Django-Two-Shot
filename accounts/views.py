@@ -11,20 +11,20 @@ def signup(request):
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
             password_confirmation = form.cleaned_data["password_confirmation"]
-            first_name = form.cleaned_data["first_name"]
-            last_name = form.cleaned_data["last_name"]
+            # first_name = form.cleaned_data["first_name"]
+            # last_name = form.cleaned_data["last_name"]
 
             if password == password_confirmation:
                 user = User.objects.create_user(
                     username,
                     password=password,
-                    first_name=first_name,
-                    last_name=last_name,
+                    # first_name=first_name,
+                    # last_name=last_name,
                 )
                 login(request, user)
                 return redirect("home")
             else:
-                form.add_error("password", "Passwords do not match")
+                form.add_error("password", "the passwords do not match")
 
     else:
         form = SignUpForm()
