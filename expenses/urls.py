@@ -25,5 +25,7 @@ def redirect_to_receipt_view(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("receipts/", include("receipts.urls")),
-    path("", redirect_to_receipt_view, name="noidea"),
+    path("", redirect_to_receipt_view, name="home1"),
+    path("home", redirect_to_receipt_view, name="homepage"),
+    path("accounts/", include("accounts.urls")),
 ]
