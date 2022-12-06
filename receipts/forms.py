@@ -1,4 +1,4 @@
-from receipts.models import Receipt
+from receipts.models import Receipt, ExpenseCategory, Account
 from django.forms import ModelForm
 
 
@@ -12,4 +12,23 @@ class ReceiptForm(ModelForm):
             "date",
             "category",
             "account",
+        ]
+
+
+class ExpenseCategoryForm(ModelForm):
+    class Meta:
+        model = ExpenseCategory
+        fields = [
+            "name",
+            "owner",
+        ]
+
+
+class AccountForm(ModelForm):
+    class Meta:
+        model = Account
+        fields = [
+            "name",
+            "owner",
+            "number",
         ]
