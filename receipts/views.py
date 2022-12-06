@@ -47,15 +47,6 @@ def create_receipt(request):
 
 
 @login_required
-def create_account(request):
-    if request.method == "POST":
-        form = AccountForm(request.POST)
-        if form.is_valid():
-            create_account = form.save()
-            return redirect("home")
-
-
-@login_required
 def create_expensecategory(request):
     if request.method == "POST":
         form = ExpenseCategoryForm(request.POST)
@@ -70,3 +61,20 @@ def create_expensecategory(request):
     context = {"form": form}
 
     return render(request, "receipts/categories/create.html", context)
+
+
+@login_required
+def create_account(request):
+    if request.method == "POST":
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            create_receipt = form.save(commit=False)
+            create_receipt.owner = request.user
+            create_receipt.save()
+            return redirect("account_list")
+    else:
+        form = AccountForm
+
+    context = {"form": form}
+
+    return render(request, "receipts/accounts/create.html", context)

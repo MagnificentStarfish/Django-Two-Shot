@@ -28,6 +28,5 @@ class AccountForm(ModelForm):
         model = Account
         fields = [
             "name",
-            "owner",
             "number",
         ]
