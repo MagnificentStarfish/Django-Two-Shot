@@ -20,7 +20,6 @@ class ExpenseCategoryForm(ModelForm):
         model = ExpenseCategory
         fields = [
             "name",
-            "owner",
         ]
 
 

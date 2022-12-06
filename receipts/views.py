@@ -33,7 +33,6 @@ def create_receipt(request):
     if request.method == "POST":
         form = ReceiptForm(request.POST)
         if form.is_valid():
-
             create_receipt = form.save(commit=False)
             create_receipt.purchaser = request.user
             create_receipt.save()
@@ -61,5 +60,13 @@ def create_expensecategory(request):
     if request.method == "POST":
         form = ExpenseCategoryForm(request.POST)
         if form.is_valid():
-            create_expensecategory = form.save()
-            return redirect("home")
+            create_receipt = form.save(commit=False)
+            create_receipt.owner = request.user
+            create_receipt.save()
+            return redirect("category_list")
+    else:
+        form = ExpenseCategoryForm
+
+    context = {"form": form}
+
+    return render(request, "receipts/categories/create.html", context)
